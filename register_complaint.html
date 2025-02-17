@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Complaint</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-list">
+            <a class="navbar-items" href="home.html">HOME</a>
+            <a class="navbar-items" href="pay.html">PAY BILL</a>
+            <a class="navbar-items" href="register_complaint.html">REGISTER COMPLAINT</a>
+            <a class="navbar-items" href="complaint_status.html">COMPLAINT STATUS</a>
+        </div>
+        <div class="navbar-user">
+            <p>Welcome, <span id="username"></span>!</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <p>Register New Complaint</p>
+        </div>
+        <form id="complaintForm">
+            <div class="fields-box">
+                <div class="details-box">
+                    <label>Complaint Type:</label>
+                    <select id="complaintType" onchange="updateCategories()">
+                        <option value="">--Select Type--</option>
+                        <option value="Billing">Billing Related</option>
+                        <option value="Voltage">Voltage Related</option>
+                        <option value="Disruption">Frequent Disruption</option>
+                        <option value="Street Light">Street Light Related</option>
+                        <option value="Pole">Pole Related</option>
+                    </select>
+                </div>
+                <div class="details-box">
+                    <label>Category:</label>
+                    <select id="category">
+                        <option value="">--Select Category--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field-box">
+                <div class="details-box">
+                    <label>Contact Person:</label>
+                    <input type="text" id="contactPerson" required>
+                </div>
+                <div class="details-box">
+                    <label>Landmark:</label>
+                    <input type="text" id="landmark" required>
+                </div>
+            </div>
+            <div class="field-box">
+                <div class="details-box">
+                    <label>Consumer Number (13 digits):</label>
+                    <input type="text" id="consumerNumber" pattern="\d{13}" required>
+                </div>
+                <div class="details-box">
+                    <label>Problem Description:</label>
+                <textarea id="problemDescription" required></textarea>
+                </div>
+            </div>
+            <div class="field-box">
+                <div class="details-box">
+                    <label>Mobile Number (10 digits):</label>
+                    <input type="text" id="mobileNumber" pattern="\d{10}" required>
+                </div>
+                <div class="details-box">
+                    <label>Address:</label>
+                    <textarea id="address" required></textarea>
+                </div>  
+            </div>
+            <div class="submit-box">
+                <button type="button" onclick="resetForm()">Cancel</button>
+                <button type="submit">Submit Complaint</button>
+            </div>
+        </form>
+    </div>
+<script src="main.js"></script>
+</body>
+</html>
