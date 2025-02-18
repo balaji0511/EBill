@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumer Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            padding:10px;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 10px #aaa;
+        }
+        .container .header p{
+            background-color: #337cc1;
+            color: #fff;
+            text-align: center;
+            padding: 15px; 
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <p>Consumer Login</p>
+    </div>
+    <h2></h2>
+    <form id="loginForm">
+        <label>User ID:</label>
+        <input type="text" id="userId" required minlength="5" maxlength="20">
+
+        <label>Password:</label>
+        <input type="password" id="password" required maxlength="30">
+        <div class="submit-box">
+            <button type="submit">Login</button>
+            <a href="register.html">Not Registered Yet?</a>
+        </div>
+    </form>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

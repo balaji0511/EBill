@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-list">
+            <a class="navbar-items" href="home.html">HOME</a>
+            <a class="navbar-items" href="pay.html">PAY BILL</a>
+            <a class="navbar-items" href="register_complaint.html">REGISTER COMPLAINT</a>
+            <a class="navbar-items" href="complaint_status.html">COMPLAINT STATUS</a>
+        </div>
+        <div class="navbar-user">
+            <p>Welcome, <span id="username"></span>!</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Payment</h2>
+        <label>Card Number:</label>
+        <input type="text" id="cardNumber" minlength="16" maxlength="16" required>
+
+        <label>Expiry Date:</label>
+        <input type="text" id="expiryDate" placeholder="MM/YY" required>
+
+        <label>CVV:</label>
+        <input type="password" id="cvv" minlength="3" maxlength="3" required>
+
+        <button onclick="makePayment()">Make Payment</button>
+    </div>
+
+<script src="main.js"></script>
+</body>
+</html>

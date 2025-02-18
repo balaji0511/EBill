@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Payment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-list">
+            <a class="navbar-items" href="home.html">HOME</a>
+            <a class="navbar-items" href="pay.html">PAY BILL</a>
+            <a class="navbar-items" href="register_complaint.html">REGISTER COMPLAINT</a>
+            <a class="navbar-items" href="complaint_status.html">COMPLAINT STATUS</a>
+        </div>
+        <div class="navbar-user">
+            <p>Welcome, <span id="username"></span>!</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <p>Payment Screen</p>
+        </div>
+        <div class="details-box">
+            <div class="fields-box">
+                <label>Credit Card Number:</label>
+                <input type="number" id="cardNumber" minlength="16" maxlength="16" required>
+            </div>
+        </div>
+        <div class="details-box">
+            <div class="fields-box">
+                <label>Card Holder Name:</label>
+                <input type="text" id="cardHolder" minlength="10" required>
+            </div>
+        </div>
+        <div class="details-box">
+            <div class="fields-box">
+                <label>Expiry Date (MM/YY):</label>
+                <div class="expiry-date">
+                    <input type="text" id="expiryDateMonth" width="10px" placeholder="Month" required>
+                    <input type="text" id="expiryDateYear" width="10px" placeholder="Year" required>
+                </div>
+            </div>
+            <div class="fields-box">
+                <label>CVV:</label>
+                <input type="number" id="cvv" minlength="3" maxlength="3" required>
+            </div>
+        </div>
+        <button onclick="makePayment()">Make Payment</button>
+    </div>
+
+<script src="main.js"></script>
+<script>
+    function makePayment() {
+        let cardNumber = document.getElementById("cardNumber").value;
+        let cardHolder = document.getElementById("cardHolder").value;
+        let expiryDate = document.getElementById("expiryDate").value;
+        let cvv = document.getElementById("cvv").value;
+
+        if (cardNumber.length !== 16 || cardHolder.length < 10 || expiryDate.length !== 5 || cvv.length !== 3) {
+            alert("Invalid Card Details!");
+            return;
+        }
+        alert("Payment Successful!");
+        window.location.href = "receipt.html";
+    }
+</script>
+</body>
+</html>

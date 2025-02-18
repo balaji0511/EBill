@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Receipt</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-list">
+            <a class="navbar-items" href="home.html">HOME</a>
+            <a class="navbar-items" href="pay.html">PAY BILL</a>
+            <a class="navbar-items" href="register_complaint.html">REGISTER COMPLAINT</a>
+            <a class="navbar-items" href="complaint_status.html">COMPLAINT STATUS</a>
+        </div>
+        <div class="navbar-user">
+            <p>Welcome, <span id="username"></span>!</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Transaction Successful</h2>
+        <p><strong>Amount Paid:</strong> ₹<span id="paidAmount"></span></p>
+        <p>Thank you for your payment!</p>
+        
+        <button onclick="downloadReceipt()">Download Receipt</button>
+    </div>
+    <script>
+        document.getElementById("paidAmount").innerText = sessionStorage.getItem("totalPayable");
+        function downloadReceipt() {
+            let text = `Payment Receipt\nAmount Paid: ₹${sessionStorage.getItem("totalPayable")}\nTransaction Successful`;
+            let blob = new Blob([text], { type: "text/plain" });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "receipt.txt";
+            link.click();
+        }
+    </script>
+</body>
+</html>
