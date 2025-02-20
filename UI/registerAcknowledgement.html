@@ -53,6 +53,12 @@
             <a href="index.html">Back to Login</a>
         </div>
     </div>
-    <script src="./main.js"></script>
+    <script>
+        if (window.location.pathname.includes("registerAcknowledgement.html")) {
+            document.getElementById("displayConsumerId").innerText = localStorage.getItem("consumerId");
+            document.getElementById("displayCustomerName").innerText = localStorage.getItem("customerName");
+            document.getElementById("displayMobile").innerText = localStorage.getItem("mobileNumber");
+        }
+    </script>
 </body>
 </html>
