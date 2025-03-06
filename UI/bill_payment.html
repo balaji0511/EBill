@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-list">
+            <a class="navbar-items" href="home.html">HOME</a>
+            <a class="navbar-items" href="pay_bill.html">PAY BILL</a>
+            <a class="navbar-items" href="register_complaint.html">REGISTER COMPLAINT</a>
+            <a class="navbar-items" href="complaint_status.html">COMPLAINT STATUS</a>
+        </div>
+        <div class="navbar-user">
+            <p>Welcome, <span id="username"></span>!</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <p>Bill Payment</p>
+        </div>
+        <table class="bill-table">
+            <thead>
+                <tr>
+                    <td>Bill details</th>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bill Amount:</td>
+                    <td>₹<span id="billAmount">0</span></td>
+                </tr>
+                <tr>
+                    <td>Total Payable Amount:</td>
+                    <td>₹<span id="totalPayable">0</span></td>
+                </tr>
+                <tr>
+                    <td>PG Charge:</td>
+                    <td>₹<span id="pgCharge">50</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <div class="bill-summary">
+            <table class="bill-summary-table">
+                <thead>
+                    <tr>
+                        <th>Consumer Number</th>
+                        <th>Payable Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="billSummaryBody"></tbody>
+            </table>
+        </div>
+        <br>
+        <label for="paymentMode">Mode of Payment:</label>
+        <select id="paymentMode">
+            <option value="debit">Debit Card</option>
+            <option value="credit">Credit Card</option>
+        </select>
+        <div class="submit-box">
+            <button onclick="proceedToCardDetails()">Pay Now</button>
+            <button onclick="goHome()">Back to Home</button>
+        </div>
+        
+    </div>    
+<script>
+    let selectedBills = JSON.parse(localStorage.getItem("selectedBills")) || [];
+    let totalAmount = parseInt(localStorage.getItem("totalAmount")) || 0;
+    let pgCharge = 50;
+    let totalPayable = totalAmount + pgCharge;
+
+    let billSummaryBody = document.getElementById("billSummaryBody");
+    selectedBills.forEach(bill => {
+        let row = document.createElement("tr");
+        row.innerHTML = `<td>${bill.consumerNumber}</td><td>₹${bill.amount}</td>`;
+        billSummaryBody.appendChild(row);
+    });
+
+    document.getElementById("billAmount").textContent = totalAmount;
+    document.getElementById("totalPayable").textContent = totalPayable;
+
+    function logout() {
+        alert("Logging out...");
+        window.location.href = "login.html";
+    }
+    function goHome() {
+        window.location.href = "home.html";
+    }
+    function proceedToCardDetails() {
+        localStorage.setItem("totalPayable",totalPayable);
+        window.location.href = "card_payment.html";
+    }
+</script>
+</body>
+</html>

@@ -5,25 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consumer Login</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            width: 60%;
-            margin: auto;
-            padding:10px;
-            border: 1px solid #ccc;
-            box-shadow: 2px 2px 10px #aaa;
-        }
-        .container .header p{
-            background-color: #337cc1;
-            color: #fff;
-            text-align: center;
-            padding: 15px; 
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
 
@@ -31,16 +12,20 @@
     <div class="header">
         <p>Consumer Login</p>
     </div>
-    <h2></h2>
     <form id="loginForm">
-        <label>User ID:</label>
-        <input type="text" id="userId" required minlength="5" maxlength="20">
-
-        <label>Password:</label>
-        <input type="password" id="password" required maxlength="30">
+        <div class="fields-box">
+            <div class="details-box">
+                <label>User ID:</label>
+                <input type="text" id="userId" required minlength="5" maxlength="20">        
+            </div>
+            <div class="details-box">
+                <label>Password:</label>
+                <input type="password" id="password" required maxlength="30">
+            </div>
+        </div>
         <div class="submit-box">
             <button type="submit">Login</button>
-            <a href="register.html">Not Registered Yet?</a>
+            <a href="register.html" class="reset">Not Registered Yet?</a>
         </div>
     </form>
 </div>
@@ -55,10 +40,14 @@
                 let enteredUserId = document.getElementById("userId").value;
                 let enteredPassword = document.getElementById("password").value;
                 
-                let storedUserId = localStorage.getItem("userId");
-                let storedPassword = localStorage.getItem("password");
-            
-                if (enteredUserId === storedUserId && enteredPassword === storedPassword) {
+                const customerData = JSON.parse(localStorage.getItem("customerData"));
+                
+                if (!customerData || !customerData.userId || !customerData.password) {
+                    alert("No registered user found. Please sign up first.");
+                    return;
+                }
+
+                if (enteredUserId === customerData.userId && enteredPassword === customerData.password) {
                     localStorage.setItem("username", enteredUserId);
                     window.location.href = "home.html"; 
                 } else {

@@ -10,7 +10,7 @@
     <div class="navbar">
         <div class="navbar-list">
             <a class="navbar-items" href="home.html">HOME</a>
-            <a class="navbar-items" href="pay.html">PAY BILL</a>
+            <a class="navbar-items" href="pay_bill.html">PAY BILL</a>
             <a class="navbar-items" href="register_complaint.html">REGISTER COMPLAINT</a>
             <a class="navbar-items" href="complaint_status.html">COMPLAINT STATUS</a>
         </div>
@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="container">
-        <p>Home</p>
+        <p>EBill Management</p>
     </div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -36,8 +36,10 @@
     
     function logout() {
         localStorage.clear();
+        alert("logged out successfully")
         window.location.href = "login.html";
     }   
+    
 </script>
 </body>
 </html>

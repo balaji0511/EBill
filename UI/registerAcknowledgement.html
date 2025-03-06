@@ -2,41 +2,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Successful</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            width: 60%;
-            margin: auto;
-            padding:10px;
-            border: 1px solid #ccc;
-            box-shadow: 2px 2px 10px #aaa;
-        }
-        .container .header p{
-            background-color: #337cc1;
-            color: #fff;
-            text-align: center;
-            padding: 15px; 
-            font-weight: bold;
-        }
-        .success-content{
-            color: #111;
-        }
-        .login-button{
-            display: flex;
-            justify-content: center;
-        }
-        a{
-            padding: 10px;
-            text-decoration: none;
-            padding: 10px;
-            margin: 10px 0;
-            font-size: 16px;
-            color: #fff;
-            background-color: #337cc1;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container" id="successMessage">
@@ -50,15 +16,23 @@
             <p><b>Mobile Number:</b> <span id="displayMobile"></span></p>
         </div>
         <div class="login-button">
-            <a href="index.html">Back to Login</a>
+            <a href="login.html">Back to Login</a>
         </div>
     </div>
     <script>
-        if (window.location.pathname.includes("registerAcknowledgement.html")) {
-            document.getElementById("displayConsumerId").innerText = localStorage.getItem("consumerId");
-            document.getElementById("displayCustomerName").innerText = localStorage.getItem("customerName");
-            document.getElementById("displayMobile").innerText = localStorage.getItem("mobileNumber");
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            let customerData = localStorage.getItem("customerData");
+
+            if (customerData) {
+                let data = JSON.parse(customerData);
+                document.getElementById("displayConsumerId").innerText = data.consumerId || "N/A";
+                document.getElementById("displayCustomerName").innerText = data.customerName || "N/A";
+                document.getElementById("displayMobile").innerText = data.mobileNumber || "N/A";
+            }else {
+                alert("No registration data found. Please register first.");
+                window.location.href = "register.html";
+            }
+        });
     </script>
 </body>
 </html>

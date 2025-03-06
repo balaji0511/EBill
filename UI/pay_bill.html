@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-list">
+            <a class="navbar-items" href="home.html">HOME</a>
+            <a class="navbar-items" href="pay_bill.html">PAY BILL</a>
+            <a class="navbar-items" href="register_complaint.html">REGISTER COMPLAINT</a>
+            <a class="navbar-items" href="complaint_status.html">COMPLAINT STATUS</a>
+        </div>
+        <div class="navbar-user">
+            <p>Welcome, <span id="username"></span>!</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <p>View Bills and Proceed to Payment</p>
+        </div>
+        <table class="bill-table" id="billTable">
+            <thead>
+                <tr>
+                    <td>Consumer Number</th>
+                    <td>Select</th>
+                    <td>Due Amount (₹)</th>
+                    <td>Payable (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1001</td>
+                    <td><input type="checkbox" class="bill" value="500" data-consumer="1001"></td>
+                    <td>₹500</td>
+                    <td>₹<span class="payable">500</span></td>
+                </tr>
+                <tr>
+                    <td>1002</td>
+                    <td><input type="checkbox" class="bill" value="300" data-consumer="1002"></td>
+                    <td>₹300</td>
+                    <td>₹<span class="payable">300</span></td>
+                </tr>
+                <tr>
+                    <td>1003</td>
+                    <td><input type="checkbox" class="bill" value="200" data-consumer="1003"></td>
+                    <td>₹200</td>
+                    <td>₹<span class="payable">200</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="total">Total Amount: ₹<span id="totalAmount">0</span></p>
+        <button onclick="proceedToPay()">Proceed to Pay</button>
+    </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    let username = localStorage.getItem("username");
+    if (document.getElementById("username")) {
+        document.getElementById("username").innerText = username;
+    }
+    });
+    
+    document.querySelectorAll('.bill').forEach(checkbox => {
+        checkbox.addEventListener('change', updateTotal);
+    });
+
+    function updateTotal() {
+        let total = 0;
+        let selectedBills = [];
+
+        document.querySelectorAll('.bill:checked').forEach(checkbox => {
+            total += parseInt(checkbox.value);
+            selectedBills.push({
+                consumerNumber: checkbox.getAttribute("data-consumer"),
+                amount: checkbox.value
+            });
+        });
+        document.getElementById('totalAmount').textContent = total;
+        localStorage.setItem("selectedBills", JSON.stringify(selectedBills));
+        localStorage.setItem("totalAmount", total);
+    }
+
+    function proceedToPay() {
+        let totalAmount = document.getElementById('totalAmount').textContent;
+        if (parseInt(totalAmount) > 0) {
+            alert("Redirecting to payment screen with total amount: ₹" + totalAmount);
+            window.location.href = "bill_payment.html";
+        } else {
+            alert("Please select at least one bill to proceed with payment.");
+        }
+    }
+    function logout() {
+        alert("Logging out...");
+        window.location.href = "login.html";
+    }
+</script>
+
+</body>
+</html>

@@ -10,7 +10,7 @@
     <div class="navbar">
         <div class="navbar-list">
             <a class="navbar-items" href="home.html">HOME</a>
-            <a class="navbar-items" href="pay.html">PAY BILL</a>
+            <a class="navbar-items" href="pay_bill.html">PAY BILL</a>
             <a class="navbar-items" href="register_complaint.html">REGISTER COMPLAINT</a>
             <a class="navbar-items" href="complaint_status.html">COMPLAINT STATUS</a>
         </div>
@@ -43,51 +43,95 @@
                     </select>
                 </div>
             </div>
-            <div class="field-box">
+            <div class="fields-box">
                 <div class="details-box">
                     <label>Contact Person:</label>
-                    <input type="text" id="contactPerson" required>
+                    <input type="text" id="contactPerson" placeholder="Contact Person" required>
                 </div>
                 <div class="details-box">
                     <label>Landmark:</label>
-                    <input type="text" id="landmark" required>
+                    <input type="text" id="landmark" placeholder="Landmark" required>
                 </div>
             </div>
-            <div class="field-box">
+            <div class="fields-box">
                 <div class="details-box">
-                    <label>Consumer Number (13 digits):</label>
-                    <input type="text" id="consumerNumber" pattern="\d{13}" required>
+                    <label>Consumer Number:</label>
+                    <input type="text" id="consumerNumber" placeholder="Consumer Number" maxlength="13" pattern="\d{13}" required>
                 </div>
                 <div class="details-box">
                     <label>Problem Description:</label>
-                <textarea id="problemDescription" required></textarea>
+                <textarea id="problemDescription" placeholder="Description" required></textarea>
                 </div>
             </div>
-            <div class="field-box">
+            <div class="fields-box">
                 <div class="details-box">
-                    <label>Mobile Number (10 digits):</label>
-                    <input type="text" id="mobileNumber" pattern="\d{10}" required>
+                    <label>Mobile Number:</label>
+                    <input type="text" id="mobileNumber" placeholder="Mobile Number" maxlength="10" pattern="\d{10}" required>
                 </div>
                 <div class="details-box">
                     <label>Address:</label>
-                    <textarea id="address" required></textarea>
+                    <textarea id="address" placeholder="Address" required></textarea>
                 </div>  
             </div>
             <div class="submit-box">
-                <button type="button" onclick="resetForm()">Cancel</button>
-                <button type="submit">Submit Complaint</button>
+                <button type="reset" class="reset" onclick="resetForm()">Cancel</button>
+                <button type="submit" class="register" onclick="">Submit Complaint</button>
             </div>
         </form>
     </div>
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    let username = localStorage.getItem("username");
+    if (document.getElementById("username")) {
+        document.getElementById("username").innerText = username;
+    }
+    });
     function goHome() {
     window.location.href = "home.html";
     }
-
     function logout() {
-        localStorage.clear();
+        alert("Logging out..");
         window.location.href = "login.html";
     }
+    function resetForm() {
+        document.getElementById("complaintForm").reset();
+    }
+
+    function updateCategories() {
+    const categories = {
+        Billing: ["Wrong Bill", "Meter Reading Issue", "Extra Charges"],
+        Voltage: ["Low Voltage", "Voltage Fluctuations"],
+        Disruption: ["Power Cut", "Transformer Issue"],
+        "Street Light": ["Light Not Working", "Damaged Pole"],
+        Pole: ["Broken Pole", "Leaning Pole"]
+    };
+
+    let complaintType = document.getElementById("complaintType").value;
+    let categorySelect = document.getElementById("category");
+
+    categorySelect.innerHTML = '<option value="">Select Category</option>';
+
+    if (categories[complaintType]) {
+        categories[complaintType].forEach(category => {
+            let option = document.createElement("option");
+            option.value = category;
+            option.innerText = category;
+            categorySelect.appendChild(option);
+        });
+    }
+    }
+    
+    document.getElementById("complaintForm")?.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let complaintId = "CMP" + Math.floor(100000 + Math.random() * 900000);  
+    localStorage.setItem("complaintId", complaintId);
+
+    alert("Complaint Registered Successfully! Your Complaint ID: " + complaintId);
+    window.location.href = "complaint_success.html";
+    });
+
+
 </script>
 </body>
 </html>
