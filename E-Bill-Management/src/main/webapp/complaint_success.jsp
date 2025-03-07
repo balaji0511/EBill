@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Registered</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-list">
+            <a class="navbar-items" href="home.html">HOME</a>
+            <a class="navbar-items" href="pay.html">PAY BILL</a>
+            <a class="navbar-items" href="register_complaint.html">REGISTER COMPLAINT</a>
+            <a class="navbar-items" href="complaint_status.html">COMPLAINT STATUS</a>
+        </div>
+        <div class="navbar-user">
+            <p>Welcome, <span id="username"></span>!</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="sub-header">
+            <h2>Complaint Registered Successfully!</h2>
+        </div>
+        <p><strong>Complaint ID:</strong> <span id="complaintId"></span></p>
+        <p>Thank you for reaching out. Our team will get back to you soon.</p>
+
+        <button onclick="goHome()">Back to Home</button>
+    </div>
+
+<script>
+    document.getElementById("complaintId").innerText = sessionStorage.getItem("complaintId");
+    function goHome() {
+        window.location.href = "home.html";
+    }
+    function logout() {
+        alert("Logging out...");
+        window.location.href = "login.html";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+CREATE TABLE customer (
+    consumerId BIGINT PRIMARY KEY,
+    billNumber BIGINT NOT NULL,
+    title VARCHAR(10) NOT NULL,
+    customerName VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    mobileNumber VARCHAR(15) NOT NULL,
+    userId VARCHAR(20) UNIQUE NOT NULL,
+    password VARCHAR(30) NOT NULL,
+    confirmPassword VARCHAR(30) NOT NULL,
+    customerStatus VARCHAR(10) NOT NULL
+);
+
+select * from customer
+
+INSERT INTO customer (consumerId, billNumber, title, customerName, email, mobileNumber, userId, password, confirmPassword, customerStatus)
+VALUES 
+(1001, 50001, 'Mr.', 'Balaji T A', 'balaji@example.com', '9876543210', 'balaji123', 'password123', 'password123', 'active'),
+(1002, 50002, 'Mr.', 'Arun Kumar', 'arun@example.com', '9765432109', 'arun99', 'securePass', 'securePass', 'active'),
+(1003, 50003, 'Ms.', 'Priya Sharma', 'priya@example.com', '9654321098', 'priya_s', 'priyaPass', 'priyaPass', 'inactive'),
+(1004, 50004, 'Mrs.', 'Sneha Reddy', 'sneha@example.com', '9543210987', 'sneha_r', 'snehaPass', 'snehaPass', 'active');
+
+
+CREATE TABLE bill (
+    billId INT PRIMARY KEY,
+    billNumber INT UNIQUE,
+    consumerNumber BIGINT NOT NULL,
+    dueAmount DECIMAL(10,2) NOT NULL,
+    payableAmount DECIMAL(10,2) NOT NULL,
+    totalAmount DECIMAL(10,2) NOT NULL,
+    billStatus VARCHAR(10) NOT NULL,
+    FOREIGN KEY (consumerNumber) REFERENCES customer(consumerId) ON DELETE CASCADE
+);
+
+
+INSERT INTO bill (billId, billNumber, consumerNumber, dueAmount, payableAmount, totalAmount, billStatus)
+VALUES
+(1, 50001, 1001, 1500.00, 1550.00, 1600.00, 'unpaid'),
+(2, 50002, 1001, 2200.00, 2250.00, 2300.00, 'paid'),
+(3, 50003, 1002, 1800.00, 1850.00, 1900.00, 'unpaid'),
+(4, 50004, 1002, 1300.00, 1350.00, 1400.00, 'paid'),
+(5, 50005, 1003, 2500.00, 2550.00, 2600.00, 'unpaid'),
+(6, 50006, 1004, 1100.00, 1150.00, 1200.00, 'unpaid');
+
+
+CREATE TABLE complaint (
+    complaintId INT PRIMARY KEY,
+    complaintType VARCHAR(15) NOT NULL,
+    category VARCHAR(20) NOT NULL,
+    customerName VARCHAR(30) NOT NULL,
+    landmark VARCHAR(30) NOT NULL,
+    consumerNumber BIGINT NOT NULL,
+    problem VARCHAR(20) NOT NULL,
+    mobileNumber VARCHAR(15) NOT NULL,
+    address VARCHAR(20) NOT NULL,
+    FOREIGN KEY (consumerNumber) REFERENCES customer(consumerId) ON DELETE CASCADE
+);
+
+
+INSERT INTO complaint (complaintId, complaintType, category, customerName, landmark, consumerNumber, problem, mobileNumber, address)
+VALUES
+(1, 'Billing', 'Electricity', 'Balaji T A', 'Near Bus Stop', 1001, 'Overcharged', '9876543210', 'Hyderabad'),
+(2, 'Service', 'Water', 'Arun Kumar', 'Main Road', 1002, 'No Supply', '9765432109', 'Chennai'),
+(3, 'Technical', 'Internet', 'Priya Sharma', 'Sector 12', 1003, 'Slow Speed', '9654321098', 'Mumbai'),
+(4, 'Service', 'Gas', 'Sneha Reddy', 'Lake View', 1004, 'Low Pressure', '9543210987', 'Bangalore');

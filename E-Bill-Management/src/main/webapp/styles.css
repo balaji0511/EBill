@@ -1,0 +1,264 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+}
+.container .header p{
+    background-color: #337cc1;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    padding: 15px; 
+    font-weight: bold;
+}
+.container .sub-header p{
+    background-color: #337cc1;
+    text-align: left;
+    color: #fff;
+    font-size: 20px;
+    padding: 15px; 
+}
+
+.register-title{
+    margin: 10px;
+    text-align: left;
+    color: #337cc1;
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom: 1px solid black;
+}
+.fields-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+.details-box{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+.payment-box{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content:space-around;
+    padding: 0px 50px;
+}
+.payment-box span{
+    padding: 10px;
+    font-size: 15px;
+    text-align: left;
+    font-weight: bold;
+    color: #4f4e4e;
+}
+textarea{
+    width:100%;
+    border: 1px solid #ccc;
+}
+.bill-table { 
+    width: 100%;
+    border-collapse: collapse;
+}
+.bill-table thead{ 
+    background-color: #564c3a;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center; 
+}
+.bill-table td { 
+    padding: 10px;
+    text-align: center; 
+}
+.bill-table th {
+    background-color: #f2f2f2;
+}
+.bill-summary{
+    display: flex;
+    justify-content: center;
+}
+.bill-summary-table{
+    width: 50%;
+    border-collapse: collapse;
+    
+}
+.bill-summary-table thead{
+    background-color: #16819e;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center; 
+    
+}
+.bill-summary-table thead tr, .bill-summary td{
+    border: 1px solid #111;
+}
+.submit-box{
+    display: flex;
+    justify-content: center;
+}
+label::before { 
+    content: "* "; 
+    color: red;
+}
+label {
+    width: 100%;
+    font-size: 15px;
+    padding: 5px;
+}
+input, select {
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+input{
+    width: 150px;
+    height: 20px;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+select{
+    height: auto;
+    padding: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    border-radius: 2px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.register {
+    background-color: rgb(33, 106, 252);
+    color: white;
+}
+
+.reset {
+    background-color: rgb(58, 75, 100);
+    color: white;
+}
+.success-message {
+    display: none;
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.container {
+    margin: 50px auto;
+    width: 60%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f9f9f9;
+    box-shadow: 2px 2px 10px #aaa;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+}
+.navbar .navbar-list{
+    background: #187171;
+    display: flex;
+    padding: 10px 60px;
+    font-weight: bold;
+}
+.navbar .navbar-items{
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+}
+.navbar .navbar-user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px 20px;
+}
+.navbar .navbar-user p{
+    margin: 20px;
+}
+.navbar .navbar-user button{
+    height: auto;
+    color: #fff;
+    margin: 0;
+    padding: 10px 30px;
+    border-radius: 10px;
+    background-color: #f3700b;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #218838;
+}
+
+.fields-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+.details-box{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+label {
+    font-size: 14px;
+    padding: 5px;
+}
+
+.success-content{
+    color: #111;
+    font-size: 16px;
+}
+.login-button{
+    display: flex;
+    justify-content: center;
+}
+.login-button a{
+    padding: 10px;
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    background-color: #337cc1;
+}
+.submit-box a{
+    padding: 10px;
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    background-color: #337cc1;
+}
+
+.expiry-date{
+    display: flex;
+    flex-direction: row;
+}
+
+.submit-box{
+            display: flex;
+            justify-content: center;
+}
