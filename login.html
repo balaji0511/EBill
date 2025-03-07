@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="customer_registration.html">Register</a></li>
+            </ul>
+        </nav>
+        <h1>User Login</h1>
+        <form id="loginForm">
+            <h2>Login Details</h2>
+            <div class="form-row">
+                <div class="form-group3">
+                    <label for="userId"><span class="required-field">*</span> User ID:</label>
+                    <input type="text" id="userId" name="userId" required>
+                    <label for="password"><span class="required-field">*</span> Password:</label>
+                    <input type="password" id="password" name="password" required>
+             
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button type="reset" name="reset" onclick="resetForm()" style="background-color: black;">Reset</button>
+                <button type="button" name="login" onclick="redirectToUserPage()">Login</button> 
+            </div>
+        </form>
+    </div>
+     <script src="script.js"></script>
+</body>
+</html>

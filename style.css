@@ -1,0 +1,264 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    background-color: rgb(5, 197, 250); 
+    padding: 10px; 
+    border-radius: 5px; 
+}
+
+h2 {
+    color:rgb(5, 197, 250);
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    font-size: 16px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-group,
+.form-group2 {
+    width: 48%; 
+}
+
+.form-group3 {
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+}
+
+.form-group3 input, select, textarea {
+    justify-content: center;
+    width: 50%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    margin: 0 auto; 
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-group3 label {
+    display: block;
+    font-weight: bold;
+    margin-left: 25%;
+    margin-bottom: 8px;
+    width: 100%; 
+    
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 80px;
+}
+
+.required-field {
+    color: red;
+}
+
+.btn_set2{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.print-btn{
+    background-color: #464343b7;
+    border-radius: 10%;
+}
+.print-btn:hover{
+    background-color: #092d45ab;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 13px;
+}
+
+
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #08d234;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #049e25ab;
+    transition: background-color 0.3s ease;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+nav {
+    background-color: #010919;
+    overflow: hidden;
+    position: sticky; /* Makes it sticky */
+    top: 0; /* Sticks to the top */
+    opacity: 75%;
+    padding: 10px 20px;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    padding: 20px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logout-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.logout-btn:hover {
+    background-color: #e53935;
+}
+
+.bill-container {
+    background-color: #f0f0f0; 
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.bill-container p {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    font-size: 16px;
+    margin: 5px 0;  
+    margin-left: 5%; 
+}
+
+.bill-container span {
+    color: #f46913; 
+    margin-right: 40%;
+    text-align: right; 
+    width: fit-content;
+    flex-grow: 1;
+}
+.bills-table {
+    width: 60%;
+    border-collapse: collapse;
+    margin: 0 auto 20px;
+}
+
+.bills-table th, .bills-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.bills-table th {
+    background-color: teal;
+    color: white;
+}
+
+.bills-table td input[type="checkbox"] {
+    margin: 0;
+}
+
+.radio-container {
+    display: flex;         
+    justify-content: center; 
+    text-align: center;    
+    gap: 20px;              
+}
+
+.radio-container label {
+    font-size: 16px;
+    display: flex;            
+    align-items: center;
+    white-space: nowrap; 
+}
+
+.radio-container input[type="radio"] {
+    margin-right: 8px;       
+}
+
+.paymentDetails-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Complaint/Service</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="view_bill.html">Pay Bill</a></li>
+                <li><a href="register_complaint.html">Register Complaint</a></li>
+                <li><a href="complaint_status.html">Complaint Status</a></li>
+            </ul>
+        </nav>
+        <header>
+            <div class="header-right">
+                <p>Welcome, <strong><span id="name"></span></strong></p>
+                <form>
+                    <button type="button" onclick="logout()" class="logout-btn">Logout</button>
+                </form>
+            </div>
+        </header>
+        <h1 style="text-align: left;">File New Complaint</h1>
+        <form id="complaintForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="complaintType">Complaint/Service Type:</label>
+                    <select id="complaintType" name="complaintType" onchange="updateCategory()" required>
+                        <option value="" disabled selected>Select Complaint Type</option>
+                        <option value="billing">Billing Related</option>
+                        <option value="voltage">Voltage Related</option>
+                        <option value="disruption">Frequent Disruption</option>
+                        <option value="streetlight">Street Light Related</option>
+                        <option value="pole">Pole Related</option>
+                    </select>
+                </div>
+                <div class="form-group2">
+                    <label for="landmark">Land Mark:</label>
+                    <input type="text" id="landmark" name="landmark" placeholder="Landmark" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category" required>
+                        <option value="" disabled selected>Select a Category</option>
+                    </select>
+                </div>
+                <div class="form-group2">
+                    <label for="consumerNo">Consumer Number:</label>
+                    <input type="text" id="consumerNo" name="consumerNo" maxlength="13" placeholder="Consumer Number" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="contactPerson">Contact Person:</label>
+                    <input type="text" id="contactPerson" name="contactPerson" placeholder="Contact Person" required>
+                </div>
+                <div class="form-group2">
+                    <label for="problemDescription"><span class="required-field">*</span> Problem Description:</label>
+                    <textarea id="problemDescription" name="problemDescription" placeholder="Enter Problem Description" required></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="mobile"><span class="required-field">*</span> Mobile Number:</label>
+                    <input type="tel" id="mobile" name="mobile" maxlength="10" placeholder="Mobile Number" required oninput="validateMobileInput(this)">
+                </div>
+                <div class="form-group2">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" placeholder="Enter Address" required></textarea>
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button type="reset" onclick="resetForm()" style="background-color: black;">Cancel</button>
+                <button type="button" name="submit" onclick="submitComplaint()">Submit Complaint</button>  
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        window.onload = function(){
+            const name = localStorage.getItem("name");
+            document.getElementById("name").innerText = name;
+        };
+
+        //Validate Mobile Number
+        function validateMobileInput(input) {
+            input.value = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+        }
+
+    </script>
+</body>
+</html>

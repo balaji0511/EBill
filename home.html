@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Pay & Bill</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="view_bill.html">Pay Bill</a></li>
+                <li><a href="register_complaint.html">Register Complaint</a></li>
+                <li><a href="complaint_status.html">Complaint Status</a></li>
+            </ul>
+        </nav>
+        <header>
+            <div class="header-right">
+                <p>Welcome, <strong><span id="name"></span></strong></p>
+                <form>
+                    <button type="button" onclick="logout()" class="logout-btn">Logout</button>
+                </form>
+            </div>
+        </header>
+        <form id="userDetailsForm">
+            <h1>My Details</h1>
+            <div class="user-details-container">
+                <p><strong>Full Name:</strong> <span id="fname"></span></p>
+                <p><strong>Email:</strong> <span id="email"></span></p>
+                <p><strong>Phone Number:</strong> <span id="mobile"></span></p>
+                <p><strong>Consumer Number:</strong> <span id="consumerNumber"></span></p>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        window.onload = function(){
+    const consumerNumber = localStorage.getItem("consumerNumber");
+    const name = localStorage.getItem("name");
+    const mobile = localStorage.getItem("mobile");
+    const email = localStorage.getItem("email");
+
+    if(name){
+        document.getElementById("name").innerText = name;
+        document.getElementById("fname").innerText = name;
+    }
+    document.getElementById("consumerNumber").innerText = consumerNumber;
+    document.getElementById("mobile").innerText = mobile;
+    document.getElementById("email").innerText = email;
+};
+    </script>
+</body>
+</html>
