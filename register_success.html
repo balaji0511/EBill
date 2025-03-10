@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Successfully</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="customer_registration.html">Register</a></li>
+            </ul>
+        </nav>
+        <h1>Registered Successfully</h1>
+        <form>
+            <h2>Thank you for registering with Ebill Application </h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <b><p>Customer Id:<span id="consumerNumber"></span></p>
+                    <p>Customer Name:<span id="name"></span></p>
+                    <p>Mobile number:<span id="mobile"></span></p></b>
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button type="button" onclick="redirectToLogin()">Back to login</button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

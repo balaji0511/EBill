@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="customer_registration.html">Register</a></li>
+            </ul>
+        </nav>
+
+        <h1>Register New User</h1>
+
+        <form id="registrationForm">
+            <h2>Consumer Details</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="consumerNumber"><span class="required-field">*</span> Consumer Number:</label>
+                    <input type="number" id="consumerNumber" name="consumerNumber" placeholder="Consumer Number" required oninput="validateConsumerNumber(this)">
+                </div>
+                <div class="form-group2">
+                    <label for="billNumber"><span class="required-field">*</span> Bill Number:</label>
+                    <input type="number" id="billNumber" name="billNumber" placeholder="Last 5 digits" required oninput="validateBillNumber(this)">
+                </div>
+            </div>
+
+            <h2>User Details</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <select id="title" name="title">
+                        <option value="" disabled selected>Please Select</option>
+                        <option value="Mr.">Mr.</option>
+                        <option value="Ms.">Ms.</option>
+                        <option value="Mrs.">Mrs.</option>
+                    </select>
+                </div>
+                <div class="form-group2">
+                    <label for="name"><span class="required-field">*</span> Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email"><span class="required-field">*</span> Email Id:</label>
+                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group2">
+                    <label for="mobile"><span class="required-field">*</span> Mobile Number:</label>
+                    <select id="countryCode" name="countryCode" required>
+                        <option value="0091-INDIA">0091-INDIA</option>
+                    </select>
+                    <input type="tel" id="mobile" name="mobile" maxlength="10" placeholder="Mobile Number" required oninput="validateMobileInput(this)">
+                </div>
+            </div>
+
+            <h2>Login Details</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="userId"><span class="required-field">*</span> User ID:</label>
+                    <input type="text" id="userId" name="userId" required oninput="validateUserId(this)">
+                </div>
+                <div class="form-group2">
+                    <label for="password"><span class="required-field">*</span> Password:</label>
+                    <input type="password" id="password" name="password" required>
+             
+                    <label for="confirmPassword"><span class="required-field">*</span> Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button type="reset" name="reset" onclick="resetForm()" style="background-color: black;">Reset</button>
+                <button type="button" name="register" onclick="redirectToSuccess()">Register</button>  
+            </div>
+        </form>
+    </div>
+     <script src="script.js"></script>
+     <script>
+        //Validate Consumer Number
+        function validateConsumerNumber(input) {
+            // Ensure the length does not exceed 13 characters
+            if (input.value.length > 13) {
+                input.value = input.value.slice(0, 13);
+            }
+        }
+
+        //Validate Bill Number
+        function validateBillNumber(input) {
+            // Ensure the length does not exceed 5 characters
+            if (input.value.length > 5) {
+                input.value = input.value.slice(0, 5);
+            }
+        }
+
+        //Validate User Id
+        function validateUserId(input) {
+            if (input.value.length > 20) {
+                input.value = input.value.slice(0, 20);
+            }
+        }
+
+        //Validate Mobile Number
+        function validateMobileInput(input) {
+            input.value = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+        }
+
+     </script>
+</body>
+</html>
