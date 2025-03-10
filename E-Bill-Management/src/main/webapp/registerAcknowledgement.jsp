@@ -22,7 +22,8 @@
         </div>
         <h3 style="color: #337cc1;">Thank you for registering with EBill Application</h3>
         <div class="success-content">
-            <p><b>Customer ID:</b> <span><%= customer.getConsumerId() %></span></p>
+            <p><b>Customer ID:</b> <span><%= customer.getCustomerId() %></span></p>
+            <p><b>User ID:</b> <span><%= customer.getUserId() %></span></p>
             <p><b>Customer Name:</b> <span><%= customer.getCustomerName() %></span></p>
             <p><b>Mobile Number:</b> <span><%= customer.getMobileNumber() %></span></p>
         </div>

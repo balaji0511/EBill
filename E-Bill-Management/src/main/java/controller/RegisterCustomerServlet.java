@@ -2,8 +2,9 @@ package controller;
 
 import dao.CustomerDAO;
 import model.Customer;
-
+import dao.DBConnection; 
 import java.io.IOException;
+import java.sql.Connection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,10 +14,22 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/registerCustomer")
 public class RegisterCustomerServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private CustomerDAO customerDAO;
+
+    @Override
+    public void init() throws ServletException {
+        try {
+            Connection conn = DBConnection.getConnection(); 
+            customerDAO = new CustomerDAO(conn);
+        } catch (Exception e) {
+            throw new ServletException("Database connection error", e);
+        }
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            int billNumber = Integer.parseInt(request.getParameter("billNumber"));
+            // Get form data
+            //String billNumber = request.getParameter("billNumber");
             String title = request.getParameter("title");
             String customerName = request.getParameter("customerName");
             String email = request.getParameter("email");
@@ -24,25 +37,32 @@ public class RegisterCustomerServlet extends HttpServlet {
             String userId = request.getParameter("userId");
             String password = request.getParameter("password");
             String confirmPassword = request.getParameter("confirmPassword");
-            
-            // Generate a random Consumer ID
-            int consumerId = (int) (1000000000000L + Math.random() * 9000000000000L);
-            // Check password confirmation
+
+            // Validate password match
             if (!password.equals(confirmPassword)) {
                 request.setAttribute("error", "Passwords do not match!");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
                 return;
             }
 
-            // Create Customer object
-            Customer customer = new Customer(consumerId, billNumber, title, customerName, email, mobileNumber, userId, password, confirmPassword,"Active");
+            // Check if email or user ID already exists
+            if (customerDAO.isEmailOrUserIdExists(email, userId)) {
+                request.setAttribute("error", "Email or User ID already exists!");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
+                return;
+            }
 
-            // Save customer in DB
-            CustomerDAO customerDAO = new CustomerDAO();
+            // Generate unique customer ID
+            long customerId = CustomerDAO.generateCustomerId();
+
+            // Create Customer object
+            Customer customer = new Customer(customerId, title, customerName, email, mobileNumber, userId, password);
+
+            // Register customer
             boolean isRegistered = customerDAO.registerCustomer(customer);
 
             if (isRegistered) {
-                // Pass customer details to the JSP page
+                // Pass customer details to the acknowledgment page
                 request.setAttribute("registeredCustomer", customer);
                 request.getRequestDispatcher("registerAcknowledgement.jsp").forward(request, response);
             } else {
@@ -51,11 +71,8 @@ public class RegisterCustomerServlet extends HttpServlet {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("error", "Invalid input!");
+            request.setAttribute("error", "An error occurred during registration!");
             request.getRequestDispatcher("register.jsp").forward(request, response);
         }
     }
-
 }
-
-

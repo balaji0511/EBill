@@ -10,7 +10,7 @@
     <div class="navbar">
         <div class="navbar-list">
             <a class="navbar-items" href="home.jsp">HOME</a>
-            <a class="navbar-items" href="pay_bill.jsp">PAY BILL</a>
+            <a class="navbar-items" href="PayBill">PAY BILL</a>
             <a class="navbar-items" href="register_complaint.jsp">REGISTER COMPLAINT</a>
             <a class="navbar-items" href="complaint_status.jsp">COMPLAINT STATUS</a>
         </div>
@@ -24,14 +24,30 @@
         <div class="header">
             <p>Check Complaint Status</p>
         </div>
-        <label for="complaintID">Enter Complaint ID:</label>
-        <input type="text" id="complaintID" placeholder="Enter your Complaint ID" required>
-        <div class="submit-box">
-            <button type="reset" class="reset" onclick="resetForm()">Cancel</button>
-            <button class="register" onclick="checkComplaintStatus()">Check Status</button>
-        </div>
+         <form action="ComplaintStatusServlet" method="get">
+        	<label for="complaintID">Enter Complaint ID:</label>
+	        <input type="text" id="complaintID" placeholder="Enter your Complaint ID" required name="compId">
+	        <div class="submit-box">
+	            <button type="reset" class="reset" onclick="resetForm()">Cancel</button>
+	            <button class="register">Check Status</button>
+	        </div>
+        </form>
         
-        <div id="statusResult" class="status-box"></div>
+        
+        <div id="statusResult" class="status-box">
+        	
+	        <% 
+	        	String complaintId =(String) session.getAttribute("status"); 
+	        	
+	        	if (complaintId != null) {
+	        	%>
+	        		<p><strong>Status:</strong> 
+	        	<% 
+	                out.println(complaintId);
+	            } 
+	        %>
+         </p> 
+        </div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -44,27 +60,10 @@
         function resetForm() {
         document.getElementById("complaintForm").reset();
         }
-        function checkComplaintStatus() {
-        let complaintID = document.getElementById("complaintID").value;
-        let statusResult = document.getElementById("statusResult");
-
-        if (complaintID.trim() === "") {
-            statusResult.innerHTML = "<p class='error'>Please enter a valid Complaint ID.</p>";
-            return;
-        }
-        let sampleStatuses = {
-            "C123": "In Progress",
-            "C124": "Resolved",
-            "C125": "Pending",
-            "C126": "Rejected"
-        };
-
-        let status = sampleStatuses[complaintID] || "Complaint ID Not Found!";
-        statusResult.innerHTML = `<p><strong>Status:</strong> ${status}</p>`;
-        }
+        
         function logout() {
             alert("Logging out...");
-            window.location.href = "login.html";
+            window.location.href = "login.jsp";
         }
     </script>
 </body>

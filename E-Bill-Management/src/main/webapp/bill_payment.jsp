@@ -7,25 +7,24 @@
         response.sendRedirect("login.jsp");
         return;
     }
-
     List<Bill> selectedBills = (List<Bill>) request.getAttribute("selectedBills");
-    double totalAmount = (Double) request.getAttribute("totalAmount");
+    Double totalAmount = (Double) request.getAttribute("totalAmount");
     double pgCharge = 50.0;
-    double totalPayable = totalAmount + pgCharge;
+    double totalPayable = totalAmount != null ? totalAmount + pgCharge : pgCharge;
 %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment</title>
+    <title>Bill Payment Summary</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="navbar">
         <div class="navbar-list">
             <a class="navbar-items" href="home.jsp">HOME</a>
-            <a class="navbar-items" href="pay_bill.jsp">PAY BILL</a>
+            <a class="navbar-items" href="PayBill">PAY BILL</a>
             <a class="navbar-items" href="register_complaint.jsp">REGISTER COMPLAINT</a>
             <a class="navbar-items" href="complaint_status.jsp">COMPLAINT STATUS</a>
         </div>
@@ -36,19 +35,19 @@
     </div>
     <div class="container">
         <div class="header">
-            <p>Bill Payment</p>
+            <p>Bill Payment Summary</p>
         </div>
         <table class="bill-table">
             <thead>
                 <tr>
-                    <th>Bill details</th>
+                    <th>Bill Details</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Bill Amount:</td>
-                    <td>₹<span id="billAmount"><%= totalAmount %></span></td>
+                    <td>₹<span id="billAmount"><%= totalAmount != null ? totalAmount : 0 %></span></td>
                 </tr>
                 <tr>
                     <td>PG Charge:</td>
@@ -65,7 +64,7 @@
             <table class="bill-summary-table">
                 <thead>
                     <tr>
-                        <th>Consumer Number</th>
+                        <th>Bill Number</th>
                         <th>Payable Amount</th>
                     </tr>
                 </thead>
@@ -73,7 +72,7 @@
                     <% if (selectedBills != null && !selectedBills.isEmpty()) { 
                         for (Bill bill : selectedBills) { %>
                             <tr>
-                                <td><%= bill.getConsumerNumber() %></td>
+                                <td><%= bill.getBillNumber() %></td>
                                 <td>₹<%= bill.getPayableAmount() %></td>
                             </tr>
                         <% } 
@@ -84,7 +83,7 @@
             </table>
         </div>
         <br>
-        <form action="CardPaymentServlet" method="post">
+        <form action="CardPayment" method="post">
             <label for="paymentMode">Mode of Payment:</label>
             <select id="paymentMode" name="paymentMode">
                 <option value="debit">Debit Card</option>
@@ -99,11 +98,6 @@
     </div>    
 
     <script>
-    function logout() {
-        if (confirm("Are you sure you want to log out?")) {
-            window.location.href = "LogoutServlet";
-        }
-    }
     function goHome() {
         window.location.href = "home.jsp";
     }

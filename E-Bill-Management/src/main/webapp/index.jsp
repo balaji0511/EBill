@@ -11,13 +11,16 @@
             padding: 0;
         }
         .navbar {
-            background-color: #007BFF;
-            padding: 15px;
-            text-align: center;
-            font-size: 24px;
-            color: white;
-            font-weight: bold;
+            background: #0056b3;
+		    padding: 15px;
+		    text-align: center;
+		    font-size: 22px;
+		    font-weight: bold;
         }
+        .navbar a {
+		    color: white;
+		    text-decoration: none;
+		}
         .container {
             background: white;
             width: 50%;
@@ -53,7 +56,9 @@
     </style>
 </head>
 <body>
-    <div class="navbar">E-Bill Management</div>
+    <div class="navbar">
+    	<a href="index.jsp" class="navbar-title">E-Bill Management</a>
+	</div>
     <div class="container">
         <h1>Welcome to E-Bill Management</h1>
         <p>Manage your bills, payments, and complaints efficiently.</p>

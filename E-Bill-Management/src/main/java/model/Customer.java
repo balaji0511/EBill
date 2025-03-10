@@ -1,8 +1,11 @@
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Customer {
-	private int consumerId;
-    private int billNumber;
+	private long customerId;
+	private long consumerNumber;
     private String title;
     private String customerName;
     private String email;
@@ -11,39 +14,26 @@ public class Customer {
     private String password;
     private String confirmPassword;
     private String customerStatus;
+    private String userType;
     
     public Customer() {
     	
     }
-	public Customer(int consumerId, int billNumber, String title, String customerName, String email,
-			String mobileNumber, String userId, String password, String confirmPassword, String customerStatus) {
-		super();
-		this.consumerId = consumerId;
-		this.billNumber = billNumber;
-		this.title = title;
-		this.customerName = customerName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
-		this.userId = userId;
-		this.password = password;
-		this.confirmPassword = confirmPassword;
-		this.customerStatus = customerStatus;
+
+	public long getCustomerId() {
+		return customerId;
 	}
 
-	public int getConsumerId() {
-		return consumerId;
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
 	}
 
-	public void setConsumerId(int consumerId) {
-		this.consumerId = consumerId;
+	public long getConsumerNumber() {
+		return consumerNumber;
 	}
 
-	public int getBillNumber() {
-		return billNumber;
-	}
-
-	public void setBillNumber(int billNumber) {
-		this.billNumber = billNumber;
+	public void setConsumerNumber(long consumerNumber) {
+		this.consumerNumber = consumerNumber;
 	}
 
 	public String getTitle() {
@@ -109,7 +99,49 @@ public class Customer {
 	public void setCustomerStatus(String customerStatus) {
 		this.customerStatus = customerStatus;
 	}
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public Customer(long customerId, long consumerNumber, String title, String customerName, String email,
+			String mobileNumber, String userId, String password, String confirmPassword, String customerStatus) {
+		super();
+		this.customerId = customerId;
+		this.consumerNumber = consumerNumber;
+		this.title = title;
+		this.customerName = customerName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.userId = userId;
+		this.password = password;
+		this.confirmPassword = confirmPassword;
+		this.customerStatus = customerStatus;
+	}
 	
+	public Customer(long customerId2, String title2, String customerName2, String email2, String mobileNumber2,
+			String userId2, String password2) {
+		super();
+		this.customerId = customerId2;
+		this.title = title2;
+		this.customerName = customerName2;
+		this.email = email2;
+		this.mobileNumber = mobileNumber2;
+		this.userId = userId2;
+		this.password = password2;
+	}
+
+	public Customer(ResultSet rs) throws SQLException {
+	    this.consumerNumber = rs.getLong("consumerNumber");
+	    this.email = rs.getString("email");
+	    this.userId = rs.getString("userId");
+	    this.password = rs.getString("password");
+	    this.userType = rs.getString("userType");
+	    this.customerStatus = rs.getString("userStatus");
+	}
+
 	
-    
 }

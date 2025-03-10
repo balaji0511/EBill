@@ -2,12 +2,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page session="true" %>
 <%
-	Customer customer = (Customer) session.getAttribute("customer");
-	if (customer == null) {
-	    response.sendRedirect("login.jsp"); 
-	    return;
-	}
-	List<Bill> bills = (List<Bill>) request.getAttribute("bills");
+    Customer customer = (Customer) session.getAttribute("customer");
+    if (customer == null) {
+        response.sendRedirect("login.jsp?message=Please login first.");
+        return;
+    }
+
+    List<Bill> bills = (List<Bill>) request.getAttribute("bills");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,16 +19,24 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+	<!-- Prevent caching -->
+    <%
+       response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); 
+       response.setHeader("Pragma", "no-cache");
+       response.setDateHeader("Expires", 0);
+    %>
     <div class="navbar">
         <div class="navbar-list">
             <a class="navbar-items" href="home.jsp">HOME</a>
-            <a class="navbar-items" href="">PAY BILL</a>
+            <a class="navbar-items" href="#">PAY BILL</a>
             <a class="navbar-items" href="register_complaint.jsp">REGISTER COMPLAINT</a>
             <a class="navbar-items" href="complaint_status.jsp">COMPLAINT STATUS</a>
         </div>
         <div class="navbar-user">
             <p>Welcome, <%= customer.getCustomerName() %>!</p>
-            <button onclick="logout()">Logout</button>
+            <form action="LogoutServlet" method="post">
+                <button type="submit">Logout</button>
+            </form>
         </div>
     </div>
 
@@ -38,19 +47,19 @@
 
         <form action="PaymentServlet" method="POST">
             <table class="bill-table">
-                <thead>
-                    <tr>
-                        <th>Consumer Number</th>
-                        <th>Select</th>
-                        <th>Due Amount (₹)</th>
-                        <th>Payable (₹)</th>
-                    </tr>
-                </thead>
+                <thead class="table-head" style="background-color: #564c3a; color: #222; font-weight: bold; padding: 10px; text-align: center;">
+				    <tr>
+				        <th>Bill Number</th>
+				        <th>Select</th>
+				        <th>Due Amount (₹)</th>
+				        <th>Payable (₹)</th>
+				    </tr>
+				</thead>
                 <tbody>
                     <% if (bills != null && !bills.isEmpty()) { %>
                         <% for (Bill bill : bills) { %>
                             <tr>
-                                <td><%= bill.getConsumerNumber() %></td>
+                                <td><%= bill.getBillNumber() %></td>
                                 <td>
                                     <input type="checkbox" name="selectedBills" value="<%= bill.getBillId() %>" class="bill" data-amount="<%= bill.getPayableAmount() %>">
                                 </td>

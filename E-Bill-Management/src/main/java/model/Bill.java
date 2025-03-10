@@ -3,7 +3,7 @@ package model;
 public class Bill {
 	private int billId;
     private int billNumber;
-    private int consumerNumber;
+    private long consumerNumber;
     private double dueAmount;
     private double payableAmount;
     private double totalAmount;
@@ -12,17 +12,6 @@ public class Bill {
     public Bill() {
     	
     }
-	public Bill(int billId, int billNumber, int consumerNumber, double dueAmount, double payableAmount,
-			double totalAmount, String billStatus) {
-		super();
-		this.billId = billId;
-		this.billNumber = billNumber;
-		this.consumerNumber = consumerNumber;
-		this.dueAmount = dueAmount;
-		this.payableAmount = payableAmount;
-		this.totalAmount = totalAmount;
-		this.billStatus = billStatus;
-	}
 
 	public int getBillId() {
 		return billId;
@@ -40,11 +29,11 @@ public class Bill {
 		this.billNumber = billNumber;
 	}
 
-	public int getConsumerNumber() {
+	public long getConsumerNumber() {
 		return consumerNumber;
 	}
 
-	public void setConsumerNumber(int consumerNumber) {
+	public void setConsumerNumber(long consumerNumber) {
 		this.consumerNumber = consumerNumber;
 	}
 
@@ -79,5 +68,16 @@ public class Bill {
 	public void setBillStatus(String billStatus) {
 		this.billStatus = billStatus;
 	}
-    
+
+	public Bill(int billId, int billNumber, long consumerNumber, double dueAmount, double payableAmount,
+			double totalAmount, String billStatus) {
+		super();
+		this.billId = billId;
+		this.billNumber = billNumber;
+		this.consumerNumber = consumerNumber;
+		this.dueAmount = dueAmount;
+		this.payableAmount = payableAmount;
+		this.totalAmount = totalAmount;
+		this.billStatus = billStatus;
+	}
 }
